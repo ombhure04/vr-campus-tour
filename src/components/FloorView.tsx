@@ -2,7 +2,6 @@ import { useState } from "react";
 import NavigationControls from "./NavigationControls";
 import TopBar from "./TopBar";
 import NavigationPanel from "./NavigationPanel";
-import CorridorView from "./CorridorView";
 
 import "aframe";
 import "aframe-look-at-component";
@@ -15,6 +14,7 @@ import navigationTree from "../data/navigationTree";
 import { useHint } from "../hooks/useHint";
 import { useCompass } from "../hooks/useCompass";
 import { useNavigation } from "../hooks/useNavigation";
+import PanoramaViewer from "./PanoramaViewer";
 
 interface FloorViewProps {
   onBack: () => void;
@@ -155,14 +155,10 @@ export default function FloorView({
         <div className="absolute inset-0 bg-white opacity-30 z-40 pointer-events-none" />
       )}
 
-      {/* VR SCENE */}
-      <CorridorView
-        image={current.image}
-        hotspots={current.hotspots}
-        setScene={goTo}
-        onBack={goBack}
-        onHome={goHome}
-      />
+      <PanoramaViewer 
+      imageUrl={current.image}
+      hotspots={current.hotspots}
+      onNavigate={goTo} />
     </div>
   );
 }

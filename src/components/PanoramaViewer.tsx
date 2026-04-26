@@ -1,34 +1,50 @@
 import { useEffect } from "react";
+import type { Scene } from "../types/scene";
 
-interface PanoramaViewerProps {
-  imageUrl: string;
+interface Hotspot {
+  position: string; // "x y z"
+  next: Scene;
 }
 
-export default function PanoramaViewer({ imageUrl }: PanoramaViewerProps) {
+interface Props {
+  imageUrl: string;
+  hotspots: Hotspot[];
+  onNavigate: (scene: Scene) => void;
+}
+
+export default function PanoramaViewer({
+  imageUrl,
+  hotspots,
+  onNavigate,
+}: Props) {
   useEffect(() => {
-    // ensure A-Frame is loaded only once (safe for React)
     if (!(window as any).AFRAME) {
-      import("aframe")
+      import("aframe");
     }
   }, []);
 
   return (
-    <div className="w-full h-full">
-      <a-scene embedded vr-mode-ui="enabled: true">
+    <a-scene embedded vr-mode-ui="enabled: true">
 
-        {/* 🌐 360 SKY (MAIN VR PANORAMA) */}
-        <a-sky
-          src={imageUrl}
-          rotation="0 -130 0"
-        ></a-sky>
+      {/* 🌐 SKY */}
+      <a-sky src={imageUrl}></a-sky>
 
-        {/* 📷 CAMERA (MOBILE + DESKTOP CONTROL) */}
-        <a-entity
-          camera
-          look-controls="magicWindowTrackingEnabled: true; touchEnabled: true"
-        ></a-entity>
+      {/* 📷 CAMERA */}
+      <a-entity
+        camera
+        look-controls="magicWindowTrackingEnabled: true"
+      ></a-entity>
 
-      </a-scene>
-    </div>
+      {/* 🔴 HOTSPOTS */}
+      {hotspots.map((h, i) => (
+        <a-sphere
+          key={i}
+          position={h.position}
+          radius="0.5"
+          color="red"
+          onClick={() => onNavigate(h.next)}
+        ></a-sphere>
+      ))}
+    </a-scene>
   );
 }
