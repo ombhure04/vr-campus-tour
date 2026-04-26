@@ -1,3 +1,4 @@
+
 export type Scene =
   | "entrance1"
   | "entrance2"
@@ -65,3 +66,15 @@ export type Scene =
   | "third_right_class1"
   | "third_right_class2"
   | "auditorium";
+
+  export type Hotspot = {
+  position: string;
+  next: Scene;
+  direction: "front" | "left" | "right" | "back";
+};
+
+export type SceneData = {
+  name: string;
+  image: string;
+  hotspots: Hotspot[];
+};

@@ -15,6 +15,7 @@ declare namespace JSX {
     "a-cylinder": any;
     "a-assets": any;
     "a-image": any;
+    "a-ring": any;
   }
 }
 
