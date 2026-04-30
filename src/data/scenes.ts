@@ -30,8 +30,8 @@ import FFleftcorridor1 from "../assets/first_floor/FFleftcorridor1.jpg";
 import C108 from "../assets/first_floor/C-1-08.jpg";
 import HODCabin from "../assets/first_floor/HODCabin.jpg";
 import C105 from "../assets/first_floor/C-1-05.jpg";
-import FFrightcorridor from "../assets/first_floor/FRightcorridor.jpg";
-import FFcorridorRight from "../assets/first_floor/FRightcorridor.jpg";
+import FFrightcorridor from "../assets/first_floor/FFRightcorridor.jpg";
+import FFcorridorRight from "../assets/first_floor/FFRightcorridor.jpg";
 import C119 from "../assets/first_floor/C-1-19.jpg";
 import C120 from "../assets/first_floor/C-1-20.jpg";
 
