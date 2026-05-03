@@ -31,7 +31,7 @@ import c108 from "../assets/first_floor/c-1-08.jpg";
 import hodcabin from "../assets/first_floor/hodcabin.jpg";
 import c105 from "../assets/first_floor/c-1-05.jpg";
 import ffrightcorridor from "../assets/first_floor/ffrightcorridor.jpg";
-import ffcorridorright from "../assets/first_floor/ffcorridorRight.jpg";
+import ffcorridorright from "../assets/first_floor/ffcorridorright.jpg";
 import c119 from "../assets/first_floor/c-1-19.jpg";
 import c120 from "../assets/first_floor/c-1-20.jpg";
 
