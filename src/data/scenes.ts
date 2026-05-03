@@ -21,19 +21,19 @@ import rightCorridor1 from "../assets/ground_floor/rightcorridor1.jpg";
 import rightClass1 from "../assets/ground_floor/rightclass1.jpg";
 import rightClass2 from "../assets/ground_floor/rightclass2.jpg";
 
-import FFleftcorridor from "../assets/first_floor/FFleftcorridor.jpg";
-import C117 from "../assets/first_floor/C-1-17.jpg";
-import C118 from "../assets/first_floor/C-1-18.jpg";
-import FFrightcorridor1 from "../assets/first_floor/FFrightcorridor1.jpg";
-import FFrightcorridor2 from "../assets/first_floor/FFrightcorridor2.jpg";
-import FFleftcorridor1 from "../assets/first_floor/FFleftcorridor1.jpg";
-import C108 from "../assets/first_floor/C-1-08.jpg";
-import HODCabin from "../assets/first_floor/HODCabin.jpg";
-import C105 from "../assets/first_floor/C-1-05.jpg";
-import FFrightcorridor from "../assets/first_floor/FFrightcorridor.jpg";
-import FFcorridorRight from "../assets/first_floor/FFrightcorridor.jpg";
-import C119 from "../assets/first_floor/C-1-19.jpg";
-import C120 from "../assets/first_floor/C-1-20.jpg";
+import ffleftcorridor from "../assets/first_floor/ffleftcorridor.jpg";
+import c117 from "../assets/first_floor/c-1-17.jpg";
+import c118 from "../assets/first_floor/c-1-18.jpg";
+import ffrightcorridor1 from "../assets/first_floor/ffrightcorridor1.jpg";
+import ffrightcorridor2 from "../assets/first_floor/ffrightcorridor2.jpg";
+import ffleftcorridor1 from "../assets/first_floor/ffleftcorridor1.jpg";
+import c108 from "../assets/first_floor/c-1-08.jpg";
+import hodcabin from "../assets/first_floor/hodcabin.jpg";
+import c105 from "../assets/first_floor/c-1-05.jpg";
+import ffrightcorridor from "../assets/first_floor/ffrightcorridor.jpg";
+import ffcorridorright from "../assets/first_floor/ffcorridorRight.jpg";
+import c119 from "../assets/first_floor/c-1-19.jpg";
+import c120 from "../assets/first_floor/c-1-20.jpg";
 
 
 import stairsLeftGF from "../assets/ground_floor/stairs_left_gf.jpg";
@@ -215,7 +215,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
     name: "Stairs to First Floor",
     image: stairsRightGF,
     hotspots: [
-      { position: "0 1.5 -4", next: "first_right_corridor", direction: "front" },
+      { position: "0 1.5 -4", next: "first_corridor_right", direction: "front" },
       { position: "0 1.2 3", next: "right_class2", direction: "back" },
     ]
   },
@@ -223,7 +223,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
   // FIRST FLOOR 
   first_corridor: {
     name: "FF left Corridor",
-    image: FFleftcorridor,
+    image: ffleftcorridor,
     hotspots: [
       { position: "0 1.5 -4", next: "first_right_corridor1", direction: "front" },
       { position: "2 1.5 -4", next: "first_class1", direction: "right" },
@@ -235,7 +235,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_class1: {
     name: "Class C-1-17",
-    image: C117,
+    image: c117,
     hotspots: [
       { position: "0 1.2 3", next: "first_corridor", direction: "back" },
     ]
@@ -243,7 +243,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_class2: {
     name: "Class C-1-18",
-    image: C118,
+    image: c118,
     hotspots: [
       { position: "0 1.2 3", next: "first_corridor", direction: "back" },
     ]
@@ -251,7 +251,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_right_corridor1: {
     name: "Right Corridor 1",
-    image: FFrightcorridor1,
+    image: ffrightcorridor1,
     hotspots: [
       { position: "-1 1.5 -4", next: "first_right_corridor2", direction: "front" },
       { position: "0 1.2 3", next: "first_corridor", direction: "back" },
@@ -260,7 +260,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_right_corridor2: {
     name: "Right Corridor 2",
-    image: FFrightcorridor2,
+    image: ffrightcorridor2,
     hotspots: [
       { position: "0 1.2 3", next: "first_right_corridor1", direction: "back" },
     ]
@@ -268,7 +268,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_left_corridor1: {
     name: "Left Corridor 1",
-    image: FFleftcorridor1,
+    image: ffleftcorridor1,
     hotspots: [
       { position: "0 1.5 -4", next: "first_lab_1", direction: "front" },
       { position: "0 1.2 3", next: "first_corridor", direction: "back" },
@@ -277,7 +277,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_lab_1: {
     name: "Lab C-1-08",
-    image: C108,
+    image: c108,
     hotspots: [
       { position: "0 1.5 -4", next: "first_HODCabin", direction: "front" },
       { position: "0 1.2 3", next: "first_left_corridor1", direction: "back" },
@@ -286,7 +286,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_HODCabin: {
     name: "HOD Cabin",
-    image: HODCabin,
+    image: hodcabin,
     hotspots: [
       { position: "0 1.5 -4", next: "first_lab2", direction: "front" },
       { position: "0 1.2 3", next: "first_lab_1", direction: "back" },
@@ -295,7 +295,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_lab2: {
     name: "Lab C-1-05",
-    image: C105,
+    image: c105,
     hotspots: [
       { position: "0 1.2 3", next: "first_HODCabin", direction: "back" },
     ]
@@ -303,7 +303,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_right_corridor: {
     name: "Right Corridor",
-    image: FFrightcorridor,
+    image: ffrightcorridor,
     hotspots: [
       { position: "0 1.2 3", next: "first_lab2", direction: "back" },
     ]
@@ -311,7 +311,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_corridor_right: {
     name: "FF Right Main Corridor",
-    image: FFcorridorRight,
+    image: ffcorridorright,
     hotspots: [
       { position: "0 1.5 -4", next: "first_left_corridorR1", direction: "front" },
       { position: "2 1.5 -4", next: "first_classR1", direction: "right" },
@@ -323,7 +323,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_classR1: {
     name: "Class C-1-19",
-    image: C119,
+    image: c119,
     hotspots: [
       { position: "0 1.2 3", next: "first_corridor_right", direction: "back" },
     ]
@@ -331,7 +331,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_classR2: {
     name: "Class C-1-20",
-    image: C120,
+    image: c120,
     hotspots: [
       { position: "0 1.2 3", next: "first_corridor_right", direction: "back" },
     ]
@@ -339,7 +339,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_left_corridorR1: {
     name: "Left Corridor R1",
-    image: FFleftcorridor1,
+    image: ffleftcorridor1,
     hotspots: [
       { position: "0 1.5 -4", next: "first_left_corridorR2", direction: "front" },
       { position: "0 1.2 3", next: "first_corridor_right", direction: "back" },
@@ -348,7 +348,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_left_corridorR2: {
     name: "Left Corridor R2",
-    image: FFleftcorridor,
+    image: ffleftcorridor,
     hotspots: [
       { position: "0 1.2 3", next: "first_left_corridorR1", direction: "back" },
     ]
@@ -356,7 +356,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_right_corridorR1: {
     name: "Right Corridor R1",
-    image: FFrightcorridor1,
+    image: ffrightcorridor1,
     hotspots: [
       { position: "0 1.5 -4", next: "first_labR1", direction: "front" },
       { position: "0 1.2 3", next: "first_corridor_right", direction: "back" },
@@ -365,7 +365,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_labR1: {
     name: "Lab C-1-21",
-    image: C108,
+    image: c108,
     hotspots: [
       { position: "0 1.5 -4", next: "first_HODCabinR", direction: "front" },
       { position: "0 1.2 3", next: "first_right_corridorR1", direction: "back" },
@@ -374,7 +374,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_HODCabinR: {
     name: "HOD Cabin R",
-    image: HODCabin,
+    image: hodcabin,
     hotspots: [
       { position: "0 1.5 -4", next: "first_labR2", direction: "front" },
       { position: "0 1.2 3", next: "first_labR1", direction: "back" },
@@ -383,7 +383,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_labR2: {
     name: "Lab C-1-22",
-    image: C105,
+    image: c105,
     hotspots: [
       { position: "0 1.5 -4", next: "first_end_corridorR", direction: "front" },
       { position: "0 1.2 3", next: "first_HODCabinR", direction: "back" },
@@ -392,7 +392,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   first_end_corridorR: {
     name: "End Corridor R",
-    image: FFrightcorridor2,
+    image: ffrightcorridor2,
     hotspots: [
       { position: "0 1.2 3", next: "first_labR2", direction: "back" },
     ]
