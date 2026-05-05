@@ -1,11 +1,13 @@
-// utils/findPath.ts
+import type { Scene } from "../types/scene";
+
 export function findPath(
-  graph: Record<string, string[]>,
-  start: string,
-  target: string
-): string[] {
-  const queue: string[][] = [[start]];
-  const visited = new Set<string>();
+  graph: Partial<Record<Scene, Scene[]>>,
+  start: Scene,
+  target: Scene
+): Scene[] {
+
+  const queue: Scene[][] = [[start]];
+  const visited = new Set<Scene>();
 
   while (queue.length) {
     const path = queue.shift()!;
@@ -15,9 +17,10 @@ export function findPath(
 
     if (!visited.has(node)) {
       visited.add(node);
-      for (const next of graph[node] || []) {
+
+      (graph[node] || []).forEach((next) => {
         queue.push([...path, next]);
-      }
+      });
     }
   }
 

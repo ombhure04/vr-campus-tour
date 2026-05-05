@@ -4,13 +4,15 @@ import TopBar from "./TopBar";
 import NavigationPanel from "./NavigationPanel";
 import CorridorView from "./CorridorView";
 import { findPath } from "../utils/findPath";
+import { buildGraph } from "../utils/buildGraph";
+
+const graph = buildGraph(scenes);
 
 import "aframe";
 import "aframe-look-at-component";
 import type { Scene } from "../types/scene";
 
 import scenes from "../data/scenes";
-import sceneGraph from "../data/sceneGraph";
 import navigationTree from "../data/navigationTree";
 
 import { useHint } from "../hooks/useHint";
@@ -39,16 +41,16 @@ export default function FloorView({
   const navRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // hooks
-  useHint(scene, sceneGraph, setHint);
+  useHint(scene, graph, setHint);
   useCompass(setDirection);
 
   const {
-    startNavigation,
+    startNavigation: _startNavigation,
     goBack: navGoBack,
     currentDirection,
   } = useNavigation(scene, setScene, onBack);
 
-  const current = scenes[scene];
+  const current = scenes[scene] ?? null;
 
   // 🔊 SPEAK
   const speak = (text: string) => {
@@ -84,49 +86,74 @@ export default function FloorView({
   };
 
   // 🔍 SEARCH
+  // 🔍 SEARCH
+  const normalize = (str: string) =>
+    str.toLowerCase().replace(/\s+/g, "").replace(/-/g, "");
+
   const handleSearch = (value: string) => {
-    const query = value.toLowerCase().trim();
+    const query = normalize(value);
 
-    const matchEntry = Object.entries(scenes).find(([key, s]) =>
-      key.toLowerCase().includes(query) ||
-      s.name.toLowerCase().includes(query)
-    );
+    let bestMatch: { key: Scene; score: number } | null = null;
 
-    if (!matchEntry) {
+    for (const key of Object.keys(scenes) as Scene[]) {
+      const s = scenes[key];
+      if (!s) continue;
+
+      let score = 0;
+
+      if (normalize(s.name).includes(query)) score += 6;
+      if (normalize(key).includes(query)) score += 4;
+
+      if (s.keywords?.some((k) => normalize(k).includes(query))) {
+        score += 10;
+      }
+
+      // ✅ SAFE (TS-friendly)
+      if (bestMatch === null || score > bestMatch.score) {
+        bestMatch = { key, score };
+      }
+    }
+
+    // ✅ TYPE GUARD (IMPORTANT)
+    if (bestMatch === null || bestMatch.score === 0) {
       speak("Location not found");
       return;
     }
 
-    const target = matchEntry[0] as Scene;
+    const target: Scene = bestMatch.key;
 
     if (mode === "guided") {
-      const path = findPath(sceneGraph, scene, target);
+      const path = findPath(graph, scene, target);
 
-      if (!path.length) {
-        speak("No path found");
+      if (!path || path.length === 0) {
+        speak("Directly moving to location");
+        setScene(target);
         return;
       }
 
       startAutoNavigation(path);
     } else {
-      setScene(target as Scene);
-      speak(`Moved to ${scenes[target as Scene]!.name}`);
+      setScene(target);
+      speak(`Moved to ${scenes[target]?.name}`);
     }
   };
 
   // 🧭 DIRECTION
   const getDirection = (from: Scene, to: Scene) => {
     const current = scenes[from];
-    if (!current) return "front";
+    if (!current?.hotspots) return "forward";
+
     const match = current.hotspots.find((h) => h.next === to);
+
     return match?.direction || "forward";
   };
 
   // 🚀 AUTO NAVIGATION
-  const startAutoNavigation = (path: string[]) => {
+  const startAutoNavigation = (path: Scene[]) => {
     if (navRef.current) clearInterval(navRef.current);
 
     let i = 1;
+
     speak("Starting navigation");
 
     navRef.current = setInterval(() => {
@@ -135,32 +162,31 @@ export default function FloorView({
         navRef.current = null;
 
         const last = path[path.length - 1];
-        speak(`You have reached ${String(last)}`);
+        speak(`You reached ${scenes[last]?.name}`);
         return;
       }
 
       const prev = path[i - 1];
       const next = path[i];
 
-      const dir = getDirection(prev as Scene, next as Scene);
+      const dir = getDirection(prev, next);
 
-      const dirText =
+      const text =
         dir === "left"
           ? "Turn left"
           : dir === "right"
-          ? "Turn right"
-          : dir === "back"
-          ? "Turn back"
-          : "Move forward";
+            ? "Turn right"
+            : dir === "back"
+              ? "Turn back"
+              : "Move forward";
 
-      speak(dirText);
-      setScene(next as Scene);
+      speak(text);
 
+      setScene(next);
       i++;
-    }, 2200);
+    }, 2000);
   };
 
-  
 
   // 🎤 VOICE INPUT
   const startVoice = () => {
@@ -226,7 +252,16 @@ export default function FloorView({
         showNav={showNav}
         setShowNav={setShowNav}
         navigationTree={navigationTree}
-        startNavigation={startNavigation}
+        startNavigation={(target) => {
+          const path = findPath(graph, scene, target);
+
+          if (!path || path.length === 0) {
+            speak("No valid path found");
+            return;
+          }
+
+          startAutoNavigation(path);
+        }}
       />
 
       {hint && mode === "free" && (

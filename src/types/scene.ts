@@ -20,26 +20,36 @@ export type Scene =
   | "stairs_right_gf"
 
   // FIRST FLOOR
-  | "first_corridor"
-  | "first_class1"
-  | "first_class2"
-  | "first_right_corridor1"
-  | "first_right_corridor2"
-  | "first_left_corridor1"
-  | "first_lab_1"
-  | "first_HODCabin"
-  | "first_lab2"
-  | "first_right_corridor"
-  | "first_corridor_right"
-  | "first_classR1"
-  | "first_classR2"
-  | "first_left_corridorR1"
-  | "first_left_corridorR2"
-  | "first_right_corridorR1"
-  | "first_labR1"
-  | "first_HODCabinR"
-  | "first_labR2"
-  | "first_end_corridorR"
+  | "ff_main_corridor"
+
+  | "ff_class_17"
+  | "ff_class_18"
+
+  | "ff_right_corridor_1"
+  | "ff_right_corridor_2"
+
+  | "ff_left_corridor_1"
+
+  | "ff_lab_08"
+  | "ff_hod_cabin"
+  | "ff_lab_05"
+  | "ff_right_corridor_l1"
+
+
+  | "ff_right_block_main"
+
+  | "ff_class_19"
+  | "ff_class_20"
+
+  | "ff_left_block_1"
+  | "ff_left_block_2"
+
+  | "ff_right_corridor_r1"
+  | "ff_lab_21"
+  | "ff_hod_cabin_r"
+  | "ff_lab_22"
+  | "ff_end_corridor_r"
+
   | "stairs_left_ff"
   | "stairs_right_ff"
 
@@ -77,7 +87,7 @@ export type Scene =
   | "third_right_class2"
   | "auditorium";
 
-  export type Hotspot = {
+export type Hotspot = {
   position: string;
   next: Scene;
   direction: "front" | "left" | "right" | "back";
@@ -85,6 +95,7 @@ export type Scene =
 
 export type SceneData = {
   name: string;
+  keywords?: string[];
   image: string;
   hotspots: Hotspot[];
 };

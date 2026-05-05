@@ -23,30 +23,130 @@ const sceneGraph: Partial<Record<Scene, Scene[]>> = {
   right_class1: ["right_corridor1"],
   right_class2: ["right_corridor1", "stairs_right_gf"],
   //(Stairs)
-  stairs_left_gf: ["left_class2", "first_corridor"],
-  stairs_right_gf: ["right_class2", "first_right_corridor"],
+  stairs_left_gf: ["left_class2", "ff_main_corridor"],
+  stairs_right_gf: ["right_class2", "ff_right_block_main", "ff_main_corridor"],
 
-  // FIRST FLOOR (Left)
-  first_corridor: ["stairs_left_gf", "first_right_corridor1", "first_class1", "first_class2"],
-  first_right_corridor: ["first_corridor", "first_right_corridor2"],
-  first_right_corridor2: ["first_right_corridor1"],
-  first_left_corridor1: ["first_corridor"],
-  first_class1: ["first_corridor"],
-  first_class2: ["first_corridor"],
-  first_lab_1: ["first_corridor"],
-  first_HODCabin: ["first_corridor"],
-  first_lab2: ["first_corridor"],
 
-  // (Right)
-  first_corridor_right: ["stairs_right_gf", "first_left_corridorR1", "first_classR1", "first_classR2"],
-  first_classR1: ["first_corridor_right"],
-  first_classR2: ["first_corridor_right"],
-  first_left_corridorR1: ["first_corridor_right", "first_left_corridorR2"],
-  first_left_corridorR2: ["first_left_corridorR1"],
-  first_labR1: ["first_right_corridorR1", "first_HODCabinR"],
-  first_HODCabinR: ["first_labR1", "first_labR2"],
-  first_labR2: ["first_HODCabinR", "first_end_corridorR"],
-  first_end_corridorR: ["first_labR2"],
+  // FIRST FLOOR (LEFT SIDE)
+
+  ff_main_corridor: [
+    "ff_right_corridor_1",
+    "ff_class_17",
+    "ff_class_18",
+    "ff_left_corridor_1",
+    "stairs_left_gf"
+  ],
+
+  ff_right_corridor_1: [
+    "ff_main_corridor",
+    "ff_right_corridor_2"
+  ],
+
+  ff_right_corridor_2: [
+    "ff_right_corridor_1"
+  ],
+
+  ff_left_corridor_1: [
+    "ff_main_corridor",
+    "ff_lab_08"
+  ],
+
+  ff_class_17: [
+    "ff_main_corridor"
+  ],
+
+  ff_class_18: [
+    "ff_main_corridor",
+    "stairs_left_ff"
+  ],
+
+  ff_lab_08: [
+    "ff_left_corridor_1",
+    "ff_hod_cabin"
+  ],
+
+  ff_hod_cabin: [
+    "ff_lab_08",
+    "ff_lab_21"
+  ],
+
+  ff_lab_05: [
+    "ff_hod_cabin",
+    "ff_right_corridor_l1"
+  ],
+
+
+  // FIRST FLOOR (RIGHT SIDE)
+
+  ff_right_block_main: [
+    "stairs_right_gf",
+    "ff_class_19",
+    "ff_class_20",
+    "ff_left_block_1",
+    "ff_right_corridor_l1",
+    "ff_right_corridor_r1"
+  ],
+
+  ff_class_19: [
+    "ff_right_block_main"
+  ],
+
+  ff_class_20: [
+    "ff_right_block_main",
+    "stairs_right_ff"
+  ],
+
+  ff_left_block_1: [
+    "ff_right_block_main",
+    "ff_left_block_2"
+  ],
+
+  ff_left_block_2: [
+    "ff_left_block_1"
+  ],
+
+  ff_right_corridor_l1: [
+    "ff_right_block_main",
+    "ff_lab_05"
+  ],
+
+  ff_right_corridor_r1: [
+    "ff_right_block_main",
+    "ff_lab_21"
+  ],
+
+  ff_lab_21: [
+    "ff_right_corridor_r1",
+    "ff_hod_cabin_r",
+    "ff_hod_cabin"
+  ],
+
+  ff_hod_cabin_r: [
+    "ff_lab_21",
+    "ff_lab_22"
+  ],
+
+  ff_lab_22: [
+    "ff_hod_cabin_r",
+    "ff_end_corridor_r"
+  ],
+
+  ff_end_corridor_r: [
+    "ff_lab_22"
+  ],
+
+
+  // STAIRS (IMPORTANT FIX)
+
+  stairs_left_ff: [
+    "ff_class_18",
+    "second_corridor_main"
+  ],
+
+  stairs_right_ff: [
+    "ff_class_20",
+    "second_corridor_main"
+  ],
 
   // SECOND FLOOR (library instead of straight)
   second_corridor_main: ["stairs_left_ff", "stairs_right_ff", "library", "second_left_corridor", "second_right_corridor"],
