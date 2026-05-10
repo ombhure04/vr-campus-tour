@@ -8,6 +8,7 @@ import { buildGraph } from "../utils/buildGraph";
 
 const graph = buildGraph(scenes);
 
+
 import "aframe";
 import "aframe-look-at-component";
 import type { Scene } from "../types/scene";
@@ -32,10 +33,12 @@ export default function FloorView({
   scene,
   setScene,
 }: FloorViewProps) {
+  const [loading, setLoading] = useState(true);
   const [showNav, setShowNav] = useState(false);
   const [hint, setHint] = useState("");
   const [direction, setDirection] = useState("N");
   const [flash, setFlash] = useState(false);
+  const [reached, setReached] = useState(false);
   const [history, setHistory] = useState<Scene[]>([]);
 
   const navRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -51,6 +54,16 @@ export default function FloorView({
   } = useNavigation(scene, setScene, onBack);
 
   const current = scenes[scene] ?? null;
+
+  const getFloor = () => {
+    const s = scene.toLowerCase();
+
+    if (s.includes("first") || s.includes("ff")) { return "First Floor"; }
+
+    if (s.includes("second") || s.includes("sf")) { return "Second Floor"; }
+
+    return "Ground Floor";
+  }
 
   // 🔊 SPEAK
   const speak = (text: string) => {
@@ -86,7 +99,6 @@ export default function FloorView({
   };
 
   // 🔍 SEARCH
-  // 🔍 SEARCH
   const normalize = (str: string) =>
     str.toLowerCase().replace(/\s+/g, "").replace(/-/g, "");
 
@@ -102,7 +114,7 @@ export default function FloorView({
       let score = 0;
 
       if (normalize(s.name).includes(query)) score += 6;
-      if (normalize(key).includes(query)) score += 4;
+      if (query.includes(normalize(s.name))) score += 3;
 
       if (s.keywords?.some((k) => normalize(k).includes(query))) {
         score += 10;
@@ -154,7 +166,9 @@ export default function FloorView({
 
     let i = 1;
 
-    speak("Starting navigation");
+    const steps = path.length * 5;
+
+    speak(`Starting navigation. Destination is approximately ${steps} steps away`);
 
     navRef.current = setInterval(() => {
       if (i >= path.length) {
@@ -163,6 +177,12 @@ export default function FloorView({
 
         const last = path[path.length - 1];
         speak(`You reached ${scenes[last]?.name}`);
+
+        setReached(true);
+
+        setTimeout(() => {
+          setReached(false);
+        }, 3000);
         return;
       }
 
@@ -205,7 +225,22 @@ export default function FloorView({
     recognition.onstart = () => speak("Listening");
 
     recognition.onresult = (event: any) => {
-      const text = event.results[0][0].transcript;
+      const text = event.results[0][0].transcript.toLowerCase();
+
+      console.log(text);
+
+      if (text.includes("back")) {
+        speak("Going back");
+        goBack();
+        return;
+      }
+
+      if (text.includes("home")) {
+        speak("Going home");
+        goHome();
+        return;
+      }
+
       speak(`Navigating to ${text}`);
       handleSearch(text);
     };
@@ -214,6 +249,14 @@ export default function FloorView({
 
     recognition.start();
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // 🧹 CLEANUP
   useEffect(() => {
@@ -226,18 +269,28 @@ export default function FloorView({
     console.log(value);
   };
 
+  if (loading) {
+    return (
+      <div className="h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-3xl text-cyan-400 mb-4">
+            Virtual Campus
+          </div>
+
+          <div className="text-white animate-pulse">
+            Loading...
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (!current) {
     return <div className="text-white p-8">Scene not found</div>;
   }
 
   return (
     <div className="relative h-screen overflow-hidden">
-
-      <NavigationControls
-        currentLocation=""
-        onBack={goBack}
-        onHome={goHome}
-      />
 
       <TopBar
         mode={mode}
@@ -246,6 +299,8 @@ export default function FloorView({
         handleInput={handleInput}
         handleSearch={handleSearch}
         suggestions={Object.values(scenes).map((s) => s.name)}
+        onBack={goBack}
+        onHome={goHome}
       />
 
       <NavigationPanel
@@ -276,9 +331,25 @@ export default function FloorView({
         </div>
       )}
 
-      <div className="absolute top-5 right-5 z-50 bg-black/60 px-4 py-2 rounded-xl text-white">
-        🧭 {direction}
+      <div className="absolute top-5 right-5 z-50 flex gap-3">
+
+        <div className="bg-black/60 px-4 py-2 rounded-xl text-white backdrop-blur-md">
+          🏢 {getFloor()}
+        </div>
+
+        <div className="bg-black/60 px-4 py-2 rounded-xl text-white backdrop-blur-md">
+          🧭 {direction}
+        </div>
+
       </div>
+
+      {reached && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-green-500 text-white px-8 py-4 rounded-2xl text-2xl shadow-2xl">
+            ✅ Destination Reached
+          </div>
+        </div>
+      )}
 
       {flash && (
         <div className="absolute inset-0 bg-white opacity-30 z-40 pointer-events-none" />

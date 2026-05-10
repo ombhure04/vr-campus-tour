@@ -10,16 +10,16 @@ import straightLeft1 from "../assets/ground_floor/straightleft1.jpg";
 import straightLeft2 from "../assets/ground_floor/straightleft2.jpg";
 import straightRight1 from "../assets/ground_floor/straightright1.jpg";
 import straightRight2 from "../assets/ground_floor/straightright2.jpg";
-
 import leftCorridor from "../assets/ground_floor/leftcorridor.jpg";
 import leftCorridor1 from "../assets/ground_floor/leftcorridor1.jpg";
 import leftClass1 from "../assets/ground_floor/leftclass1.jpg";
 import leftClass2 from "../assets/ground_floor/leftclass2.jpg";
-
 import rightCorridor from "../assets/ground_floor/rightcorridor.jpg";
 import rightCorridor1 from "../assets/ground_floor/rightcorridor1.jpg";
 import rightClass1 from "../assets/ground_floor/rightclass1.jpg";
 import rightClass2 from "../assets/ground_floor/rightclass2.jpg";
+import stairsLeftGF from "../assets/ground_floor/stairs_left_gf.jpg";
+import stairsRightGF from "../assets/ground_floor/stairs_right_gf.jpg";
 
 import ffleftcorridor from "../assets/first_floor/ffleftcorridor.jpg";
 import c117 from "../assets/first_floor/c-1-17.jpg";
@@ -28,28 +28,28 @@ import ffrightcorridor1 from "../assets/first_floor/ffrightcorridor1.jpg";
 import ffrightcorridor2 from "../assets/first_floor/ffrightcorridor2.jpg";
 import ffleftcorridor1 from "../assets/first_floor/ffleftcorridor1.jpg";
 import c108 from "../assets/first_floor/c-1-08.jpg";
+import ff_lab_08_inside from "../assets/first_floor/ff_lab_08_inside.jpg";
 import hodcabin from "../assets/first_floor/hodcabin.jpg";
 import c105 from "../assets/first_floor/c-1-05.jpg";
+import ff_lab_05_inside from "../assets/first_floor/ff_lab_05_inside.jpg";
 import ffrightcorridor from "../assets/first_floor/ffrightcorridor.jpg";
 import ffcorridorright from "../assets/first_floor/ffcorridorright.jpg";
 import c119 from "../assets/first_floor/c-1-19.jpg";
 import c120 from "../assets/first_floor/c-1-20.jpg";
-
-
-import stairsLeftGF from "../assets/ground_floor/stairs_left_gf.jpg";
-import stairsRightGF from "../assets/ground_floor/stairs_right_gf.jpg";
-
 import stairsLeftFF from "../assets/first_floor/stairs_left_ff.jpg";
 import stairsRightFF from "../assets/first_floor/stairs_right_ff.jpg";
 
-import stairsLeftSF from "../assets/second_floor/stairs_left_sf.jpg";
-import stairsRightSF from "../assets/second_floor/stairs_right_sf.jpg";
-
-import libraryImg from "../assets/common/library1.jpg";
-import libraryImg2 from "../assets/common/library2.jpg";
-import libraryImg3 from "../assets/common/library3.jpg";
-
-// import auditoriumImg from "../assets/common/auditorium.jpg";
+import sflcorridor from "../assets/second_floor/sflcorridor.jpg";
+import C214 from "../assets/second_floor/c-2-14.jpg";
+import C215 from "../assets/second_floor/c-2-15.jpg";
+import sflcorridor1 from "../assets/second_floor/sflcorridor1.jpg";
+import Lab201 from "../assets/second_floor/lab1entrance.jpg";
+import Lab202 from "../assets/second_floor/lab2entrance.jpg";
+import Lab203 from "../assets/second_floor/lab3entrance.jpg";
+import Lab204 from "../assets/second_floor/lab4entrance.jpg";
+import sfrcorridor from "../assets/second_floor/sfrcorridor.jpg";
+import C20 from "../assets/second_floor/c-2-20.jpg";
+import Lab209 from "../assets/second_floor/lab209.jpg";
 
 
 const scenes: Partial<Record<Scene, SceneData>> = {
@@ -143,6 +143,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
     hotspots: [
       { position: "-1 1.5 -4", next: "left_class1", direction: "left" },
       { position: "1 1.5 -4", next: "left_class2", direction: "right" },
+      { position: "-4 1.5 0", next: "stairs_left_gf", direction: "front" },
       { position: "0 1.2 3", next: "left_corridor", direction: "back" },
     ]
   },
@@ -159,7 +160,6 @@ const scenes: Partial<Record<Scene, SceneData>> = {
     name: "Left Class 2",
     image: leftClass2,
     hotspots: [
-      { position: "0 1.5 -4", next: "stairs_left_gf", direction: "front" },
       { position: "0 1.2 3", next: "left_corridor1", direction: "back" },
     ]
   },
@@ -180,6 +180,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
     hotspots: [
       { position: "-1 1.5 -4", next: "right_class1", direction: "left" },
       { position: "1 1.5 -4", next: "right_class2", direction: "right" },
+      { position: "4 1.5 0", next: "stairs_right_gf", direction: "front" },
       { position: "0 1.2 3", next: "right_corridor", direction: "back" },
     ]
   },
@@ -196,7 +197,6 @@ const scenes: Partial<Record<Scene, SceneData>> = {
     name: "Right Class 2",
     image: rightClass2,
     hotspots: [
-      { position: "0 1.5 -4", next: "stairs_right_gf", direction: "front" },
       { position: "0 1.2 3", next: "right_corridor1", direction: "back" },
     ]
   },
@@ -224,9 +224,10 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   ff_main_corridor: {
     name: "First Floor Corridor",
-    keywords: ["ff corridor"],
+    keywords: ["ff left corridor"],
     image: ffleftcorridor,
     hotspots: [
+      { position: "4 1.5 0", next: "stairs_right_ff", direction: "front" },
       { position: "0 1.5 -4", next: "ff_right_corridor_1", direction: "front" },
       { position: "2 1.5 -4", next: "ff_class_17", direction: "right" },
       { position: "-2 1.5 -4", next: "ff_class_18", direction: "left" },
@@ -237,7 +238,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   ff_class_17: {
     name: "Class C-1-17",
-    keywords: ["ffC117"],
+    keywords: ["ff left class 1"],
     image: c117,
     hotspots: [
       { position: "0 1.2 3", next: "ff_main_corridor", direction: "back" },
@@ -246,17 +247,16 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   ff_class_18: {
     name: "Class C-1-18",
-    keywords: ["ffC118"],
+    keywords: ["ff left class 2"],
     image: c118,
     hotspots: [
-      { position: "0 1.5 -4", next: "stairs_left_ff", direction: "front" },
       { position: "0 1.2 3", next: "ff_main_corridor", direction: "back" },
     ]
   },
 
   ff_right_corridor_1: {
     name: "Right Corridor 1",
-    keywords: ["ff right corridor"],
+    keywords: ["ff left side right corridor"],
     image: ffrightcorridor1,
     hotspots: [
       { position: "-1 1.5 -4", next: "ff_right_corridor_2", direction: "front" },
@@ -266,7 +266,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   ff_right_corridor_2: {
     name: "Right Corridor 2",
-    keywords: ["ffright corridor2"],
+    keywords: ["ff left side right corridor2"],
     image: ffrightcorridor2,
     hotspots: [
       { position: "0 1.2 3", next: "ff_right_corridor_1", direction: "back" },
@@ -275,7 +275,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   ff_left_corridor_1: {
     name: "Left Corridor 1",
-    keywords: ["ffleft corridor1"],
+    keywords: ["ff left side left corridor1"],
     image: ffleftcorridor1,
     hotspots: [
       { position: "0 1.5 -4", next: "ff_lab_08", direction: "front" },
@@ -285,11 +285,21 @@ const scenes: Partial<Record<Scene, SceneData>> = {
 
   ff_lab_08: {
     name: "Lab C-1-08",
-    keywords: ["ff lab 08"],
+    keywords: ["ff  lab 08"],
     image: c108,
     hotspots: [
       { position: "0 1.5 -4", next: "ff_hod_cabin", direction: "front" },
+      { position: "3 1.5 -2", next: "ff_lab_08_inside", direction: "right" },
       { position: "0 1.2 3", next: "ff_left_corridor_1", direction: "back" },
+    ]
+  },
+
+  ff_lab_08_inside: {
+    name: "Lab  lab08 Inside",
+    image: ff_lab_08_inside,
+    hotspots: [
+      // Wapas main lab
+      { position: "0 1.2 3", next: "ff_lab_08", direction: "back" },
     ]
   },
 
@@ -309,6 +319,16 @@ const scenes: Partial<Record<Scene, SceneData>> = {
     image: c105,
     hotspots: [
       { position: "0 1.2 3", next: "ff_hod_cabin", direction: "back" },
+      { position: "3 1.5 -2", next: "ff_lab_05_inside", direction: "right" },
+    ]
+  },
+
+  ff_lab_05_inside: {
+    name: "Lab lab 05 Inside",
+    image: ff_lab_05_inside,
+    hotspots: [
+      // Wapas main lab
+      { position: "0 1.2 3", next: "ff_lab_05", direction: "back" },
     ]
   },
 
@@ -326,6 +346,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
     keywords: ["right block main"],
     image: ffcorridorright,
     hotspots: [
+      { position: "4 1.5 0", next: "stairs_right_ff", direction: "front" },
       { position: "0 1.5 -4", next: "ff_class_19", direction: "front" },
       { position: "2 1.5 -4", next: "ff_class_20", direction: "right" },
       { position: "-2 1.5 -4", next: "ff_left_block_1", direction: "left" },
@@ -388,6 +409,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
     image: c108,
     hotspots: [
       { position: "0 1.5 -4", next: "ff_hod_cabin_r", direction: "front" },
+      { position: "3 1.5 -2", next: "ff_lab_21_inside", direction: "right" },
       { position: "0 1.2 3", next: "ff_right_corridor_r1", direction: "back" }, // FIX
     ]
   },
@@ -408,6 +430,7 @@ const scenes: Partial<Record<Scene, SceneData>> = {
     image: c105,
     hotspots: [
       { position: "0 1.5 -4", next: "ff_end_corridor_r", direction: "front" },
+      { position: "3 1.5 -2", next: "ff_lab_22_inside", direction: "right" },
       { position: "0 1.2 3", next: "ff_hod_cabin_r", direction: "back" },
     ]
   },
@@ -421,15 +444,13 @@ const scenes: Partial<Record<Scene, SceneData>> = {
     ]
   },
 
-
-
   // Stairs to Second Floor
   stairs_left_ff: {
     name: "Stairs to Second Floor",
     image: stairsLeftFF,
     hotspots: [
-      { position: "0 1.5 -4", next: "second_corridor_main", direction: "front" },
-      { position: "0 1.2 3", next: "ff_class_18", direction: "back" },
+      { position: "0 1.5 -4", next: "sflcorridor", direction: "front" },
+      { position: "0 1.2 3", next: "ff_main_corridor", direction: "back" },
     ]
   },
 
@@ -437,229 +458,195 @@ const scenes: Partial<Record<Scene, SceneData>> = {
     name: "Stairs to Second Floor",
     image: stairsRightFF,
     hotspots: [
-      { position: "0 1.5 -4", next: "second_corridor_main", direction: "front" },
-      { position: "0 1.2 3", next: "ff_class_20", direction: "back" },
+      { position: "0 1.5 -4", next: "sfrcorridor", direction: "front" },
+      { position: "0 1.2 3", next: "ff_right_block_main", direction: "back" },
     ]
   },
 
 
-
-  // SECOND FLOOR - Library instead of straight
-  second_corridor_main: {
-    name: "Main Corridor",
-    image: corridorMain,
+  // SECOND FLOOR
+  // Left Side
+  sflcorridor: {
+    name: "Second Floor Left Corridor",
+    keywords: ["second floor corridor"],
+    image: sflcorridor,
     hotspots: [
-      { position: "0 1.5 -4", next: "library", direction: "front" },
-      { position: "-2 1.5 -4", next: "second_left_corridor", direction: "left" },
-      { position: "2 1.5 -4", next: "second_right_corridor", direction: "right" },
+      { position: "-2 1.5 -4", next: "c214", direction: "left" },
+      { position: "2 1.5 -4", next: "c215", direction: "right" },
+      { position: "0 1.5 -4", next: "sflcorridor1", direction: "front" },
       { position: "0 1.2 3", next: "stairs_left_ff", direction: "back" },
     ]
   },
 
-  library: {
-    name: "Library",
-    image: libraryImg,
+  c214: {
+    name: "c214",
+    image: C214,
     hotspots: [
-      { position: "-1 1.5 -4", next: "library2", direction: "left" },
-      { position: "1 1.5 -4", next: "library3", direction: "right" },
-      { position: "0 1.2 3", next: "second_corridor_main", direction: "back" },
+      { position: "0 1.2 3", next: "sflcorridor", direction: "back" },
     ]
   },
 
-  library2: {
-    name: "Library 2",
-    image: libraryImg2,
+  c215: {
+    name: "c215",
+    image: C215,
     hotspots: [
-      { position: "0 1.2 3", next: "library", direction: "back" },
+      { position: "0 1.2 3", next: "sflcorridor", direction: "back" },
     ]
   },
 
-  library3: {
-    name: "Library 3",
-    image: libraryImg3,
+  sflcorridor1: {
+    name: "SFL Corridor 1",
+    image: sflcorridor1,
     hotspots: [
-      { position: "0 1.2 3", next: "library", direction: "back" },
+      { position: "0 1.5 -4", next: "lab1", direction: "front" },
+      { position: "0 1.2 3", next: "sflcorridor", direction: "back" },
     ]
   },
 
-  second_left_corridor: {
-    name: "Left Corridor",
-    image: leftCorridor,
+  lab1: {
+    name: "Lab 1",
+    image: Lab201,
     hotspots: [
-      { position: "0 1.5 -4", next: "second_left_corridor1", direction: "front" },
-      { position: "0 1.2 3", next: "second_corridor_main", direction: "back" },
+      { position: "0 1.5 -4", next: "lab2", direction: "front" },
+      { position: "0 1.2 3", next: "sflcorridor1", direction: "back" },
     ]
   },
 
-  second_left_corridor1: {
-    name: "Left Corridor 1",
-    image: leftCorridor1,
+  lab2: {
+    name: "Lab 2",
+    image: Lab202,
     hotspots: [
-      { position: "-1 1.5 -4", next: "second_class1", direction: "left" },
-      { position: "1 1.5 -4", next: "second_class2", direction: "right" },
-      { position: "0 1.2 3", next: "second_left_corridor", direction: "back" },
+      { position: "0 1.5 -4", next: "lab3", direction: "front" },
+      { position: "0 1.2 3", next: "lab1", direction: "back" },
     ]
   },
 
-  second_class1: {
-    name: "Second Class 1",
-    image: leftClass1,
+  lab3: {
+    name: "Lab 3",
+    image: Lab203,
     hotspots: [
-      { position: "0 1.2 3", next: "second_left_corridor1", direction: "back" },
+      { position: "0 1.5 -4", next: "lab4", direction: "front" },
+      { position: "0 1.2 3", next: "lab2", direction: "back" },
     ]
   },
 
-  second_class2: {
-    name: "Second Class 2",
-    image: leftClass2,
+  lab4: {
+    name: "Lab 4",
+    image: Lab204,
     hotspots: [
-      { position: "0 1.5 -4", next: "stairs_left_sf", direction: "front" },
-      { position: "0 1.2 3", next: "second_left_corridor1", direction: "back" },
+      { position: "0 1.5 -4", next: "sfrcorridor", direction: "front" },
+      { position: "0 1.2 3", next: "lab3", direction: "back" },
     ]
   },
 
-  second_right_corridor: {
-    name: "Right Corridor",
-    image: rightCorridor,
+  sfrcorridor: {
+    name: "Second Floor Right Corridor",
+    image: sfrcorridor,
     hotspots: [
-      { position: "0 1.5 -4", next: "second_right_corridor1", direction: "front" },
-      { position: "0 1.2 3", next: "second_corridor_main", direction: "back" },
+      { position: "-2 1.5 -4", next: "lab209", direction: "left" },
+      { position: "2 1.5 -4", next: "class20", direction: "right" },
+      { position: "0 1.2 3", next: "lab4", direction: "back" },
     ]
   },
 
-  second_right_corridor1: {
-    name: "Right Corridor 1",
-    image: rightCorridor1,
+  lab209: {
+    name: "Lab 209",
+    image: Lab209,
     hotspots: [
-      { position: "-1 1.5 -4", next: "second_right_class1", direction: "left" },
-      { position: "1 1.5 -4", next: "second_right_class2", direction: "right" },
-      { position: "0 1.2 3", next: "second_right_corridor", direction: "back" },
+      { position: "0 1.2 3", next: "sfrcorridor", direction: "back" },
     ]
   },
 
-  second_right_class1: {
-    name: "Right Class 1",
-    image: rightClass1,
+  class20: {
+    name: "Class 20",
+    image: C20,
     hotspots: [
-      { position: "0 1.2 3", next: "second_right_corridor1", direction: "back" },
+      { position: "0 1.2 3", next: "sfrcorridor", direction: "back" },
     ]
   },
 
-  second_right_class2: {
-    name: "Right Class 2",
-    image: rightClass2,
+  // Right Side
+
+  sfrightcorridor: {
+    name: "Second Floor Right Corridor",
+    image: sfrcorridor,
     hotspots: [
-      { position: "0 1.5 -4", next: "stairs_right_sf", direction: "front" },
-      { position: "0 1.2 3", next: "second_right_corridor1", direction: "back" },
+      { position: "-2 1.5 -4", next: "lab209", direction: "right" },
+      { position: "2 1.5 -4", next: "class20", direction: "left" },
+      { position: "0 1.5 -4", next: "lab4", direction: "front" },
+      { position: "0 1.2 3", next: "stairs_right_ff", direction: "back" },
     ]
   },
 
-  // Stairs to Third Floor
-  stairs_left_sf: {
-    name: "Stairs to Third Floor",
-    image: stairsLeftSF,
+  rlab209: {
+    name: "Lab 209",
+    image: Lab209,
     hotspots: [
-      { position: "0 1.5 -4", next: "third_corridor_main", direction: "front" },
-      { position: "0 1.2 3", next: "second_class2", direction: "back" },
+      { position: "0 1.2 3", next: "sfrightcorridor", direction: "back" },
     ]
   },
 
-  stairs_right_sf: {
-    name: "Stairs to Third Floor",
-    image: stairsRightSF,
+  rclass20: {
+    name: "Class 20",
+    image: C20,
     hotspots: [
-      { position: "0 1.5 -4", next: "third_corridor_main", direction: "front" },
-      { position: "0 1.2 3", next: "second_right_class2", direction: "back" },
+      { position: "0 1.2 3", next: "sfrightcorridor", direction: "back" },
     ]
   },
 
-  // THIRD FLOOR - Auditorium instead of straight
-  third_corridor_main: {
-    name: "Main Corridor",
-    image: corridorMain,
+  rlab4: {
+    name: "Lab 4",
+    image: Lab204,
     hotspots: [
-      { position: "0 1.5 -4", next: "auditorium", direction: "front" },
-      { position: "-2 1.5 -4", next: "third_left_corridor", direction: "left" },
-      { position: "2 1.5 -4", next: "third_right_corridor", direction: "right" },
-      { position: "0 1.2 3", next: "stairs_left_sf", direction: "back" },
+      { position: "0 1.5 -4", next: "rlab3", direction: "front" },
+      { position: "0 1.2 3", next: "sfrcorridor", direction: "back" },
     ]
   },
 
-  auditorium: {
-    name: "Auditorium",
-    image: corridorMain,
+  rlab3: {
+    name: "Lab 3",
+    image: Lab203,
     hotspots: [
-      { position: "0 1.2 3", next: "third_corridor_main", direction: "back" },
+      { position: "0 1.5 -4", next: "rlab2", direction: "front" },
+      { position: "0 1.2 3", next: "rlab4", direction: "back" },
     ]
   },
 
-  third_left_corridor: {
-    name: "Left Corridor",
-    image: leftCorridor,
+  rlab2: {
+    name: "Lab 2",
+    image: Lab202,
     hotspots: [
-      { position: "0 1.5 -4", next: "third_left_corridor1", direction: "front" },
-      { position: "0 1.2 3", next: "third_corridor_main", direction: "back" },
+      { position: "0 1.5 -4", next: "rlab1", direction: "front" },
+      { position: "0 1.2 3", next: "rlab3", direction: "back" },
     ]
   },
 
-  third_left_corridor1: {
-    name: "Left Corridor 1",
-    image: leftCorridor1,
+  rlab1: {
+    name: "Lab 1",
+    image: Lab201,
     hotspots: [
-      { position: "-1 1.5 -4", next: "third_class1", direction: "left" },
-      { position: "1 1.5 -4", next: "third_class2", direction: "right" },
-      { position: "0 1.2 3", next: "third_left_corridor", direction: "back" },
+      { position: "0 1.5 -4", next: "rsflcorridor1", direction: "front" },
+      { position: "0 1.2 3", next: "rlab2", direction: "back" },
     ]
   },
 
-  third_class1: {
-    name: "Third Class 1",
-    image: leftClass1,
+  rsflcorridor1: {
+    name: "SFL Corridor 1",
+    image: sflcorridor1,
     hotspots: [
-      { position: "0 1.2 3", next: "third_left_corridor1", direction: "back" },
+      { position: "0 1.5 -4", next: "rsflcorridor", direction: "front" },
+      { position: "0 1.2 3", next: "rlab1", direction: "back" },
     ]
   },
 
-  third_class2: {
-    name: "Third Class 2",
-    image: leftClass2,
+  rsflcorridor: {
+    name: "Second Floor Left Corridor",
+    keywords: ["second floor corridor"],
+    image: sflcorridor,
     hotspots: [
-      { position: "0 1.2 3", next: "third_left_corridor1", direction: "back" },
-    ]
-  },
-
-  third_right_corridor: {
-    name: "Right Corridor",
-    image: rightCorridor,
-    hotspots: [
-      { position: "0 1.5 -4", next: "third_right_corridor1", direction: "front" },
-      { position: "0 1.2 3", next: "third_corridor_main", direction: "back" },
-    ]
-  },
-
-  third_right_corridor1: {
-    name: "Right Corridor 1",
-    image: rightCorridor1,
-    hotspots: [
-      { position: "-1 1.5 -4", next: "third_right_class1", direction: "left" },
-      { position: "1 1.5 -4", next: "third_right_class2", direction: "right" },
-      { position: "0 1.2 3", next: "third_right_corridor", direction: "back" },
-    ]
-  },
-
-  third_right_class1: {
-    name: "Right Class 1",
-    image: rightClass1,
-    hotspots: [
-      { position: "0 1.2 3", next: "third_right_corridor1", direction: "back" },
-    ]
-  },
-
-  third_right_class2: {
-    name: "Right Class 2",
-    image: rightClass2,
-    hotspots: [
-      { position: "0 1.2 3", next: "third_right_corridor1", direction: "back" },
+      { position: "-2 1.5 -4", next: "c214", direction: "left" },
+      { position: "2 1.5 -4", next: "c215", direction: "right" },
+      { position: "0 1.2 3", next: "rsflcorridor1", direction: "back" },
     ]
   },
 };
